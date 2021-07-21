@@ -1,7 +1,7 @@
 <table [dataSource]="data" mat-table>
     <ng-container matColumnDef='action'>
         <ng-container *ngIf="actionType === 'add'">
-            <th *matHeaderCellDef mat-header-cell>Add</th>
+            <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.add' | translate}}</th>
             <td *matCellDef="let order" mat-cell class="p10">
                 <button
                     *ngIf="!order?.isFollowup"
@@ -9,14 +9,14 @@
                     mat-raised-button
                     class="actions-main"
                     color="primary">
-                    add to follow list
+                    {{'stms.shared.table.title.button-add' | translate}}
                 </button>
-                <span *ngIf="order?.isFollowup">followed</span>
+                <span *ngIf="order?.isFollowup">{{'stms.shared.table.title.followed' | translate}}</span>
             </td>
         </ng-container>
 
         <ng-container *ngIf="actionType === 'remove'">
-            <th *matHeaderCellDef mat-header-cell>Remove</th>
+            <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.remove' | translate}}</th>
             <td *matCellDef="let order" mat-cell class="p10">
                 <button
                     *ngIf="order?.isFollowup"
@@ -24,42 +24,42 @@
                     mat-raised-button
                     class="actions-main"
                     color="primary">
-                    remove from follow list
+                    {{'stms.shared.table.title.button-remove' | translate}}
                 </button>
-                <span *ngIf="!order?.isFollowup">unfollowed</span>
+                <span *ngIf="!order?.isFollowup">{{'stms.shared.table.title.unfollowed' | translate}}</span>
             </td>
         </ng-container>
     </ng-container>
 
     <ng-container matColumnDef='orderNum'>
-        <th *matHeaderCellDef mat-header-cell>orderNum</th>
-        <td *matCellDef="let order" mat-cell class="p10">{{order?.orderNum}}</td>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.orderNum' | translate}}</th>
+        <td *matCellDef="let order" mat-cell class="p10">{{order?.orderNum || '-'}}</td>
     </ng-container>
 
     <ng-container matColumnDef='orderName'>
-        <th *matHeaderCellDef mat-header-cell>orderName</th>
-        <td *matCellDef="let order" mat-cell class="p10">{{order?.orderName}}</td>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.orderName' | translate}}</th>
+        <td *matCellDef="let order" mat-cell class="p10">{{order?.orderName || '-'}}</td>
     </ng-container>
 
     <ng-container matColumnDef='status'>
-        <th *matHeaderCellDef mat-header-cell>status</th>
-        <td *matCellDef="let order" mat-cell class="p10">{{order?.status?.name}}</td>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.status' | translate}}</th>
+        <td *matCellDef="let order" mat-cell class="p10">{{order?.status?.name || '-'}}</td>
     </ng-container>
 
     <ng-container matColumnDef='creator'>
-        <th *matHeaderCellDef mat-header-cell>creator</th>
-        <td *matCellDef="let order" mat-cell class="p10">{{order?.creator?.name}}</td>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.creator' | translate}}</th>
+        <td *matCellDef="let order" mat-cell class="p10">{{order?.creator?.name || '-'}}</td>
     </ng-container>
 
     <ng-container matColumnDef='patient'>
-        <th *matHeaderCellDef mat-header-cell>patient</th>
-        <td *matCellDef="let order" mat-cell class="p10">{{order?.patient?.firstName}}</td>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.patient' | translate}}</th>
+        <td *matCellDef="let order" mat-cell class="p10">{{order?.patient?.firstName || '-'}}</td>
     </ng-container>
 
     <ng-container matColumnDef='creationDate'>
-        <th *matHeaderCellDef mat-header-cell>creationDate</th>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.creationDate' | translate}}</th>
         <td *matCellDef="let order" mat-cell class="p10">
-            {{order?.creationDate?.formattedTime}} {{order?.creationDate?.formattedDate}}
+            {{order?.creationDate?.formattedTime}} {{order?.creationDate?.formattedDate || '-'}}
         </td>
     </ng-container>
 
