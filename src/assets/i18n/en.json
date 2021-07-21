@@ -54,5 +54,7 @@
   "stms.follow-list.orders": "Followed orders:",
   "stms.follow-list.patients": "Followed patients:",
   "stms.follow-list.empty": "No followers yet..",
-  "stms.follow-list.title": "Follow list"
+  "stms.follow-list.title": "Follow list",
+  "stms.follow-list.clear": "Clear",
+  "stms.follow-list.filter.placeholder": "Filter by"
 }

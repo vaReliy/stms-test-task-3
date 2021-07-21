@@ -2,6 +2,8 @@
     <div rtl>
         <h1 class="main-heading">{{ 'stms.follow-list.title' | translate }}</h1>
         <div class="actions">
+            <st-filter (filterChange)="onFilterChange($event)"></st-filter>
+
             <div *ngIf="orderList$ | async as orderList">
                 <h2>{{'stms.follow-list.orders' | translate}}</h2>
                 <st-orders-table
