@@ -11,7 +11,8 @@
       <st-orders-table
         *ngIf="orderList$ | async as list"
         [data]="list"
-        (add)="onAddOrder($event)">
+        [actionType]="'add'"
+        (action)="onFollowOrder($event)">
       </st-orders-table>
     </div>
 

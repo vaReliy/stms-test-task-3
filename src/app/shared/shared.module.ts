@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatTableModule } from '@angular/material/table'
 import { TranslateModule } from "@ngx-translate/core";
 
 import { MatButtonModule } from "@angular/material/button";
@@ -49,6 +50,7 @@ import { faMediumM, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import { BigInputComponent } from "./components/big-input/big-input/big-input.component";
 import { BigInputActionComponent } from "./components/big-input/big-input-action/big-input-action.component";
+import { OrdersTableComponent } from './components/orders-table/orders-table.component'
 import { RtlSupportDirective } from "./directives/rtl-support/rtl-support.directive";
 
 @NgModule({
@@ -74,12 +76,15 @@ import { RtlSupportDirective } from "./directives/rtl-support/rtl-support.direct
     MatSlideToggleModule,
     MatDividerModule,
 
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatTableModule
   ],
   declarations: [
     BigInputComponent,
     BigInputActionComponent,
-    RtlSupportDirective
+    RtlSupportDirective,
+
+    OrdersTableComponent,
   ],
   exports: [
     CommonModule,
@@ -111,7 +116,9 @@ import { RtlSupportDirective } from "./directives/rtl-support/rtl-support.direct
 
     BigInputComponent,
     BigInputActionComponent,
-    RtlSupportDirective
+    RtlSupportDirective,
+
+    OrdersTableComponent,
   ]
 })
 export class SharedModule {

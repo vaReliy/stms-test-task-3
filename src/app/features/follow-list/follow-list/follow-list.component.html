@@ -1,0 +1,15 @@
+<div class="container">
+    <div rtl>
+        <h1 class="main-heading">{{ 'stms.follow-list.title' | translate }}</h1>
+        <div class="actions">
+            <div *ngIf="orderList.length">
+                <h2>Followed orders:</h2>
+                <st-orders-table
+                    [data]="orderList"
+                    [actionType]="'remove'"
+                    (action)="onUnfollowOrder($event)">
+                </st-orders-table>
+            </div>
+        </div>
+    </div>
+</div>

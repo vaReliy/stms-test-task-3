@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Order } from '../../../shared/models/order.model'
+import { Order } from '../../models/order.model'
 
 @Component({
   selector: 'st-orders-table',
@@ -10,10 +10,12 @@ import { Order } from '../../../shared/models/order.model'
 export class OrdersTableComponent implements OnInit {
   @Input() data: Order[]
 
-  @Output() add = new EventEmitter<Order>()
+  @Input() actionType: 'add' | 'remove' = 'add'
+
+  @Output() action = new EventEmitter<Order>()
 
   displayedColumns = [
-    'add',
+    'action',
     'orderNum',
     'orderName',
     'status',

@@ -4,7 +4,7 @@ import { startWith, switchMap } from 'rxjs/operators'
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/core.module"
 import { Order } from '../../../shared/models/order.model'
-import { OrdersService } from './orders.service'
+import { OrdersService } from '../../../services/orders.service'
 
 @Component({
   selector: "st-orders",
@@ -21,8 +21,7 @@ export class OrdersComponent implements OnInit {
 
   filter$ = new Subject() // todo filter (bonus)
 
-  constructor(private readonly ordersService: OrdersService) {
-  }
+  constructor(private readonly ordersService: OrdersService) {}
 
   ngOnInit() {
     this.orderList$ = combineLatest([
@@ -37,8 +36,8 @@ export class OrdersComponent implements OnInit {
     this.refresh$.next({})
   }
 
-  onAddOrder(order: Order): void {
-    // todo: add order
-    console.log('todo: add order', order.orderNum) // fixme
+  onFollowOrder(order: Order): void {
+    order.isFollowup = true
+    this.ordersService.addFollowedItem(order)
   }
 }

@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
+import { NgModule } from "@angular/core"
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router"
 
 const routes: Routes = [
   {
@@ -16,6 +16,11 @@ const routes: Routes = [
     path: "orders",
     loadChildren: () =>
       import("./features/orders/orders.module").then(m => m.OrdersModule)
+  },
+  {
+    path: "follow-list",
+    loadChildren: () =>
+      import("./features/follow-list/follow-list.module").then(m => m.FollowListModule)
   },
   {
     path: "settings",
