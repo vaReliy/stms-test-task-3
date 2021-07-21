@@ -1,6 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Order } from '../../../shared/models/order.model'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
 import { OrdersService } from '../../../services/orders.service'
+import { PatientService } from '../../../services/patient.service'
+import { Order } from '../../../shared/models/order.model'
+import { Patient } from '../../../shared/models/patient.model'
 
 @Component({
   selector: 'st-follow-list',
@@ -9,15 +12,26 @@ import { OrdersService } from '../../../services/orders.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FollowListComponent implements OnInit {
-  orderList: Order[] = []
+  orderList$: Observable<Order[]>
 
-  constructor(private readonly ordersService: OrdersService) {}
+  patientsList$: Observable<Patient[]> // todo
+
+  constructor(
+    private readonly ordersService: OrdersService,
+    private readonly patientService: PatientService,
+  ) {
+  }
 
   ngOnInit(): void {
-    this.orderList = this.ordersService.getFollowedOrderList()
+    this.orderList$ = this.ordersService.getFollowedList()
+    this.patientsList$ = this.patientService.getFollowedList()
   }
 
   onUnfollowOrder(order: Order): void {
     this.ordersService.removeFollowedItem(order)
+  }
+
+  onUnfollowPatient(patient: Patient): void {
+    this.patientService.removeFollowedItem(patient)
   }
 }

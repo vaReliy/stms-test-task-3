@@ -2,12 +2,18 @@
   <div rtl>
     <h1 class="main-heading">{{ 'stms.patients.title' | translate }}</h1>
     <div class="actions">
-      <a mat-raised-button class="actions-main" color="primary" routerLink="../settings">
+      <a
+        (click)="onRefresh()"
+        mat-raised-button class="actions-main" color="primary">
         {{ 'stms.patients.get-patients' | translate }}
       </a>
-      <!--
-        Endpoint to fetch data: https://api.mocki.io/v2/51597ef3
-       -->
+
+      <st-patient-table
+        *ngIf="patientList$ | async as list"
+        [data]="list"
+        [actionType]="'add'"
+        (action)="onFollowPatient($event)">
+      </st-patient-table>
     </div>
   </div>
 </div>

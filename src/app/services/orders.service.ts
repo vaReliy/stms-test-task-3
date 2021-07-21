@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { OrdersRepo } from '../repositories/orders-repo.service'
 import { Order } from '../shared/models/order.model'
+import { AbstractFollowedService } from './abstract-followed.service'
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrdersService {
+export class OrdersService extends AbstractFollowedService<Order> {
   constructor(private readonly orderRepo: OrdersRepo) {
+    super()
   }
-
-  private followedList = new Map<number, Order>()
 
   getOrderList(): Observable<Order[]> {
     return this.orderRepo.getList()
   }
 
   addFollowedItem(order: Order): void {
+    order.isFollowup = true
     this.followedList.set(order.orderNum, order)
   }
 
@@ -25,9 +26,5 @@ export class OrdersService {
       this.followedList.delete(order.orderNum)
       order.isFollowup = false
     }
-  }
-
-  getFollowedOrderList(): Order[] {
-    return Array.from(this.followedList.values())
   }
 }

@@ -2,14 +2,29 @@
     <div rtl>
         <h1 class="main-heading">{{ 'stms.follow-list.title' | translate }}</h1>
         <div class="actions">
-            <div *ngIf="orderList.length">
+            <div *ngIf="orderList$ | async as orderList">
                 <h2>Followed orders:</h2>
                 <st-orders-table
+                    *ngIf="orderList.length; else empty"
                     [data]="orderList"
                     [actionType]="'remove'"
                     (action)="onUnfollowOrder($event)">
                 </st-orders-table>
             </div>
+
+            <div *ngIf="patientsList$ | async as patientList">
+                <h2>Followed patients:</h2>
+                <st-patient-table
+                    *ngIf="patientList.length; else empty"
+                    [data]="patientList"
+                    [actionType]="'remove'"
+                    (action)="onUnfollowPatient($event)">
+                </st-patient-table>
+            </div>
         </div>
     </div>
 </div>
+
+<ng-template #empty>
+    <div>no followers yet</div>
+</ng-template>

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
-import { combineLatest, Observable, Subject } from 'rxjs'
-import { startWith, switchMap } from 'rxjs/operators'
+import { Observable, Subject } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/core.module"
-import { Order } from '../../../shared/models/order.model'
 import { OrdersService } from '../../../services/orders.service'
+import { Order } from '../../../shared/models/order.model'
 
 @Component({
   selector: "st-orders",
@@ -19,15 +19,10 @@ export class OrdersComponent implements OnInit {
 
   refresh$ = new Subject()
 
-  filter$ = new Subject() // todo filter (bonus)
-
   constructor(private readonly ordersService: OrdersService) {}
 
   ngOnInit() {
-    this.orderList$ = combineLatest([
-      this.refresh$,
-      this.filter$.pipe(startWith({})),
-    ]).pipe(
+    this.orderList$ = this.refresh$.pipe(
       switchMap(() => this.ordersService.getOrderList())
     )
   }
@@ -37,7 +32,6 @@ export class OrdersComponent implements OnInit {
   }
 
   onFollowOrder(order: Order): void {
-    order.isFollowup = true
     this.ordersService.addFollowedItem(order)
   }
 }

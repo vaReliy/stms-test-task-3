@@ -55,6 +55,6 @@ export interface Patient {
   headingFields?: any[];
   weight?: string;
   height?: string;
-  followUpPatient?: any;
+  followUpPatient?: boolean;
   isHospitalized?: boolean;
 }
