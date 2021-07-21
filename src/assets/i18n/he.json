@@ -8,6 +8,7 @@
   "stms.menu.login": "התחברות",
   "stms.menu.logout": "התנתקות",
   "stms.menu.settings": "הגדרות",
+  "stms.menu.follow-list": "Follow list",
 
   "stms.settings.animations.elements": "בזמן ניווט אלמנטים זיזים כלפי מעלה",
   "stms.settings.animations.page": "טרנזיציה מלאה בניוט לדף",
@@ -30,5 +31,30 @@
   "stms.patients.get-patients": "מצא נבדקים",
 
   "stms.orders.title": "הזמנות",
-  "stms.orders.get-orders": "מצא הזמנות"
+  "stms.orders.get-orders": "מצא הזמנות",
+
+  "stms.shared.table.title.add": "Add",
+  "stms.shared.table.title.remove": "Remove",
+  "stms.shared.table.title.button-add": "Add to follow list",
+  "stms.shared.table.title.button-remove": "Remove from follow list",
+  "stms.shared.table.title.followed": "followed",
+  "stms.shared.table.title.unfollowed": "unfollowed",
+  "stms.shared.table.title.orderNum": "Order number",
+  "stms.shared.table.title.orderName": "Order name",
+  "stms.shared.table.title.status": "Status",
+  "stms.shared.table.title.creator": "Creator",
+  "stms.shared.table.title.patient": "Patient",
+  "stms.shared.table.title.creationDate": "Creation date",
+  "stms.shared.table.title.code": "Code",
+  "stms.shared.table.title.fullName": "Full name",
+  "stms.shared.table.title.sex": "Sex",
+  "stms.shared.table.title.age": "Age",
+  "stms.shared.table.title.birthDate": "Birthdate",
+
+  "stms.follow-list.orders": "Followed orders:",
+  "stms.follow-list.patients": "Followed patients:",
+  "stms.follow-list.empty": "No followers yet..",
+  "stms.follow-list.title": "Follow list",
+  "stms.follow-list.clear": "Clear",
+  "stms.follow-list.filter.placeholder": "Filter by"
 }

@@ -1,6 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
+import { Observable, Subject } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
-import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/core.module";
+import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/core.module"
+import { OrdersService } from '../../../services/orders.service'
+import { Order } from '../../../shared/models/order.model'
 
 @Component({
   selector: "st-orders",
@@ -9,9 +13,25 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/core.module";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrdersComponent implements OnInit {
-  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS
 
-  constructor() {}
+  orderList$: Observable<Order[]>
 
-  ngOnInit() {}
+  refresh$ = new Subject()
+
+  constructor(private readonly ordersService: OrdersService) {}
+
+  ngOnInit() {
+    this.orderList$ = this.refresh$.pipe(
+      switchMap(() => this.ordersService.getOrderList())
+    )
+  }
+
+  onRefresh(): void {
+    this.refresh$.next({})
+  }
+
+  onFollowOrder(order: Order): void {
+    this.ordersService.addFollowedItem(order)
+  }
 }

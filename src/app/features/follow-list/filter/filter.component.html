@@ -1,0 +1,17 @@
+<div [formGroup]="form" class="f-row">
+    <mat-select formControlName="filterBy" class="w-30p" (selectionChange)="clearQuery()">
+        <mat-option value="fullName">{{'stms.shared.table.title.fullName' | translate}}</mat-option>
+        <mat-option value="orderName">{{'stms.shared.table.title.orderName' | translate}}</mat-option>
+    </mat-select>
+
+    <mat-form-field class="ml-20">
+        <mat-label *ngIf="form.get('filterBy')?.value as filterBy">
+            {{'stms.follow-list.filter.placeholder' | translate}} {{'stms.shared.table.title.' + filterBy | translate}}
+        </mat-label>
+        <input matInput formControlName="query">
+    </mat-form-field>
+
+    <button mat-raised-button class="actions-main ml-20" (click)="resetForm()">
+        {{'stms.follow-list.clear' | translate}}
+    </button>
+</div>

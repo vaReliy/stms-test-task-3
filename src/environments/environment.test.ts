@@ -1,6 +1,7 @@
 const packageJson = require("../../package.json");
 
 export const environment = {
+  apiUrl: '',
   appName: "STMS test task",
   envName: "TEST",
   production: false,

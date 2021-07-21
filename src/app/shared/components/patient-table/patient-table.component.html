@@ -1,0 +1,61 @@
+<table [dataSource]="data" mat-table>
+    <ng-container matColumnDef='action'>
+        <ng-container *ngIf="actionType === 'add'">
+            <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.add' | translate}}</th>
+            <td *matCellDef="let patient" mat-cell class="p10">
+                <button
+                    *ngIf="!patient?.followUpPatient"
+                    (click)="action.emit(patient)"
+                    mat-raised-button
+                    class="actions-main"
+                    color="primary">
+                    {{'stms.shared.table.title.button-add' | translate}}
+                </button>
+                <span *ngIf="patient?.followUpPatient">{{'stms.shared.table.title.followed' | translate}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container *ngIf="actionType === 'remove'">
+            <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.remove' | translate}}</th>
+            <td *matCellDef="let patient" mat-cell class="p10">
+                <button
+                *ngIf="patient?.followUpPatient"
+                (click)="action.emit(patient)"
+                mat-raised-button
+                class="actions-main"
+                color="primary">
+                {{'stms.shared.table.title.button-remove' | translate}}
+                </button>
+                <span *ngIf="!patient?.followUpPatient">{{'stms.shared.table.title.unfollowed' | translate}}</span>
+            </td>
+        </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef='code'>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.code' | translate}}</th>
+        <td *matCellDef="let patient" mat-cell class="p10">{{patient?.code || '-'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='fullName'>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.fullName' | translate}}</th>
+        <td *matCellDef="let patient" mat-cell class="p10">{{patient?.fullName || '-'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='sex'>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.sex' | translate}}</th>
+        <td *matCellDef="let patient" mat-cell class="p10">{{patient?.sex?.name || '-'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='age'>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.age' | translate}}</th>
+        <td *matCellDef="let patient" mat-cell class="p10">{{patient?.age || '-'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='birthDate'>
+        <th *matHeaderCellDef mat-header-cell>{{'stms.shared.table.title.birthDate' | translate}}</th>
+        <td *matCellDef="let patient" mat-cell class="p10">{{patient?.birthDate?.formattedDate || '-'}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

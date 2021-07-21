@@ -12,7 +12,7 @@ export interface Order {
   collectionStatus?: any;
   comments?: any[];
   copyToFacility?: any;
-  creationDate?: any;
+  creationDate?: { formattedTime: string, formattedDate: string };
   creator?: any;
   defaultFax?: any;
   department?: any;
@@ -54,7 +54,7 @@ export interface Order {
   orderNum?: number;
   pathologyPatientHistoryProceduresCounter?: number;
   pathologyProcedures?: any[];
-  patient?: any;
+  patient?: { firstName: string };
   paymentMethods?: any[];
   patientConsent?: { code: number; name: string };
   phlebotomist?: any;
