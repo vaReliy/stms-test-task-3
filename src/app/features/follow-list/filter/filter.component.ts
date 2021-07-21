@@ -30,8 +30,12 @@ export class FilterComponent implements OnInit, OnDestroy {
     })
   }
 
-  clear(): void {
+  resetForm(): void {
     this.form.reset({filterBy: 'orderName'})
+  }
+
+  clearQuery(): void {
+    this.form.get('query')?.setValue('')
   }
 
   ngOnDestroy(): void {

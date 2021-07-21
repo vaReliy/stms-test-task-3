@@ -31,13 +31,19 @@ export class FollowListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const filterList = ({filter, list}) => list.filter(
+      (item) => filter.query
+      ? item[filter.filterBy].toLowerCase().includes(filter.query.toLowerCase())
+      : true
+    )
+
     this.orderList$ = combineLatest([
       this.filter$.pipe(startWith({filterBy: 'orderName', query: ''})),
       this.ordersService.getFollowedList()
     ]).pipe(
       map(([filter, list]) => ({filter, list})),
-      filter(({filter, list}) => filter.filterBy === 'orderName'),
-      map(({filter, list}) => list.filter((item) => filter.query ? item[filter.filterBy].toLowerCase().includes(filter.query.toLowerCase()) : true))
+      filter(({filter, list}) => filter.filterBy === 'orderName' || !filter.query),
+      map(filterList)
     )
 
     this.patientsList$ = combineLatest([
@@ -45,8 +51,8 @@ export class FollowListComponent implements OnInit {
       this.patientService.getFollowedList()
     ]).pipe(
       map(([filter, list]) => ({filter, list})),
-      filter(({filter, list}) => filter.filterBy === 'fullName'),
-      map(({filter, list}) => list.filter((item) => filter.query ? item[filter.filterBy].toLowerCase().includes(filter.query.toLowerCase()) : true))
+      filter(({filter, list}) => filter.filterBy === 'fullName' || !filter.query),
+      map(filterList)
     )
   }
 

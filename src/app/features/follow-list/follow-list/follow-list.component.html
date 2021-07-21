@@ -4,7 +4,7 @@
         <div class="actions">
             <st-filter (filterChange)="onFilterChange($event)"></st-filter>
 
-            <div *ngIf="orderList$ | async as orderList">
+            <div *ngIf="orderList$ | async as orderList" class="mt-2rem">
                 <h2>{{'stms.follow-list.orders' | translate}}</h2>
                 <st-orders-table
                     *ngIf="orderList.length; else empty"
@@ -14,7 +14,7 @@
                 </st-orders-table>
             </div>
 
-            <div *ngIf="patientsList$ | async as patientList">
+            <div *ngIf="patientsList$ | async as patientList" class="mt-2rem">
                 <h2>{{'stms.follow-list.patients' | translate}}</h2>
                 <st-patient-table
                     *ngIf="patientList.length; else empty"
