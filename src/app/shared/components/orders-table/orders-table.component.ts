@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Order } from '../../models/order.model'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'st-orders-table',
@@ -8,11 +8,11 @@ import { Order } from '../../models/order.model'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrdersTableComponent implements OnInit {
-  @Input() data: Order[]
+  @Input() data: Order[];
 
-  @Input() actionType: 'add' | 'remove' = 'add'
+  @Input() actionType: 'add' | 'remove' = 'add';
 
-  @Output() action = new EventEmitter<Order>()
+  @Output() action = new EventEmitter<Order>();
 
   displayedColumns = [
     'action',
@@ -22,7 +22,7 @@ export class OrdersTableComponent implements OnInit {
     'creator',
     'patient',
     'creationDate',
-  ]
+  ];
 
   constructor() { }
 

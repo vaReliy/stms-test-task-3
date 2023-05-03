@@ -40,6 +40,7 @@
             </button>
           </span>
 
+          <!-- eslint-disable-next-line @angular-eslint/template/no-negated-async -->
           <button mat-button mat-stroked-button *ngIf="!(isAuthenticated$ | async)" (click)="onLoginClick()">
             {{ 'stms.menu.login' | translate }}
           </button>

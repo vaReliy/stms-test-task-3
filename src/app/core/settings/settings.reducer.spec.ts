@@ -1,4 +1,4 @@
-import { initialState, settingsReducer } from "./settings.reducer";
+import { initialState, settingsReducer } from './settings.reducer';
 
 import {
   actionSettingsChangeAnimationsElements,
@@ -9,28 +9,28 @@ import {
   actionSettingsChangeLanguage,
   actionSettingsChangeStickyHeader,
   actionSettingsChangeTheme
-} from "./settings.actions";
+} from './settings.actions';
 
-describe("SettingsReducer", () => {
-  it("should return default state", () => {
+describe('SettingsReducer', () => {
+  it('should return default state', () => {
     const action = {} as any;
     const state = settingsReducer(undefined, action);
     expect(state).toBe(initialState);
   });
 
-  it("should update language", () => {
-    const action = actionSettingsChangeLanguage({ language: "he" });
+  it('should update language', () => {
+    const action = actionSettingsChangeLanguage({ language: 'he' });
     const state = settingsReducer(undefined, action);
-    expect(state.language).toEqual("he");
+    expect(state.language).toEqual('he');
   });
 
-  it("should update theme", () => {
-    const action = actionSettingsChangeTheme({ theme: "dark" });
+  it('should update theme', () => {
+    const action = actionSettingsChangeTheme({ theme: 'dark' });
     const state = settingsReducer(undefined, action);
-    expect(state.theme).toEqual("dark");
+    expect(state.theme).toEqual('dark');
   });
 
-  it("should update pageAnimations", () => {
+  it('should update pageAnimations', () => {
     const action = actionSettingsChangeAnimationsPage({
       pageAnimations: false
     });
@@ -38,7 +38,7 @@ describe("SettingsReducer", () => {
     expect(state.pageAnimations).toEqual(false);
   });
 
-  it("should update pageAnimationsDisabled and pageAnimations", () => {
+  it('should update pageAnimationsDisabled and pageAnimations', () => {
     const action = actionSettingsChangeAnimationsPageDisabled({
       pageAnimationsDisabled: true
     });
@@ -47,7 +47,7 @@ describe("SettingsReducer", () => {
     expect(state.pageAnimations).toEqual(false);
   });
 
-  it("should update elementsAnimations", () => {
+  it('should update elementsAnimations', () => {
     const action = actionSettingsChangeAnimationsElements({
       elementsAnimations: false
     });
@@ -55,7 +55,7 @@ describe("SettingsReducer", () => {
     expect(state.elementsAnimations).toEqual(false);
   });
 
-  it("should update autoNightMode", () => {
+  it('should update autoNightMode', () => {
     const action = actionSettingsChangeAutoNightMode({
       autoNightMode: true
     });
@@ -63,7 +63,7 @@ describe("SettingsReducer", () => {
     expect(state.autoNightMode).toEqual(true);
   });
 
-  it("should update stickyHeader", () => {
+  it('should update stickyHeader', () => {
     const action = actionSettingsChangeStickyHeader({
       stickyHeader: false
     });
@@ -71,7 +71,7 @@ describe("SettingsReducer", () => {
     expect(state.stickyHeader).toEqual(false);
   });
 
-  it("should update hour", () => {
+  it('should update hour', () => {
     const action = actionSettingsChangeHour({
       hour: 7
     });

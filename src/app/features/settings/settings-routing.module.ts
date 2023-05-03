@@ -1,13 +1,13 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { SettingsContainerComponent } from "./settings/settings-container.component";
+import { SettingsContainerComponent } from './settings/settings-container.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: SettingsContainerComponent,
-    data: { title: "stms.menu.settings" }
+    data: { title: 'stms.menu.settings' }
   }
 ];
 

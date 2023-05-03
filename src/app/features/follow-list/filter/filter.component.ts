@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
-import { FormBuilder } from '@angular/forms'
-import { Subject } from 'rxjs'
-import { auditTime, takeUntil } from 'rxjs/operators'
+import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { auditTime, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'st-filter',
@@ -10,14 +10,14 @@ import { auditTime, takeUntil } from 'rxjs/operators'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterComponent implements OnInit, OnDestroy {
-  @Output() filterChange = new EventEmitter()
+  @Output() filterChange = new EventEmitter();
 
   form = this.fb.group({
     filterBy: this.fb.control('orderName'),
     query: this.fb.control(''),
-  })
+  });
 
-  private subscribeHolder$ = new Subject()
+  private subscribeHolder$ = new Subject();
 
   constructor(private readonly fb: FormBuilder) { }
 
@@ -26,20 +26,20 @@ export class FilterComponent implements OnInit, OnDestroy {
       auditTime(300),
       takeUntil(this.subscribeHolder$)
     ).subscribe((filter) => {
-      this.filterChange.emit(filter)
-    })
+      this.filterChange.emit(filter);
+    });
   }
 
   resetForm(): void {
-    this.form.reset({filterBy: 'orderName'})
+    this.form.reset({filterBy: 'orderName'});
   }
 
   clearQuery(): void {
-    this.form.get('query')?.setValue('')
+    this.form.get('query')?.setValue('');
   }
 
   ngOnDestroy(): void {
-    this.subscribeHolder$.next()
-    this.subscribeHolder$.complete()
+    this.subscribeHolder$.next();
+    this.subscribeHolder$.complete();
   }
 }

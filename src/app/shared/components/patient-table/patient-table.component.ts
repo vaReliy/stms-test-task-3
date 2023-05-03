@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Patient } from '../../models/patient.model'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Patient } from '../../models/patient.model';
 
 @Component({
   selector: 'st-patient-table',
@@ -8,11 +8,11 @@ import { Patient } from '../../models/patient.model'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PatientTableComponent implements OnInit {
-  @Input() data: Patient[]
+  @Input() data: Patient[];
 
-  @Input() actionType: 'add' | 'remove' = 'add'
+  @Input() actionType: 'add' | 'remove' = 'add';
 
-  @Output() action = new EventEmitter<Patient>()
+  @Output() action = new EventEmitter<Patient>();
 
   displayedColumns = [
     'action',
@@ -21,7 +21,7 @@ export class PatientTableComponent implements OnInit {
     'sex',
     'age',
     'birthDate',
-  ]
+  ];
 
   constructor() { }
 

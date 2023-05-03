@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { ROUTE_ANIMATIONS_ELEMENTS } from "../../../core/core.module";
+import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 
 import {
   actionSettingsChangeAnimationsElements,
@@ -11,14 +11,14 @@ import {
   actionSettingsChangeLanguage,
   actionSettingsChangeTheme,
   actionSettingsChangeStickyHeader
-} from "../../../core/settings/settings.actions";
-import { SettingsState, State } from "../../../core/settings/settings.model";
-import { selectSettings } from "../../../core/settings/settings.selectors";
+} from '../../../core/settings/settings.actions';
+import { SettingsState, State } from '../../../core/settings/settings.model';
+import { selectSettings } from '../../../core/settings/settings.selectors';
 
 @Component({
-  selector: "st-settings",
-  templateUrl: "./settings-container.component.html",
-  styleUrls: ["./settings-container.component.scss"],
+  selector: 'st-settings',
+  templateUrl: './settings-container.component.html',
+  styleUrls: ['./settings-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsContainerComponent implements OnInit {
@@ -26,15 +26,15 @@ export class SettingsContainerComponent implements OnInit {
   settings$: Observable<SettingsState>;
 
   themes = [
-    { value: "DEFAULT-THEME", label: "cyan" },
-    { value: "LIGHT-THEME", label: "light" },
-    { value: "NATURE-THEME", label: "nature" },
-    { value: "BLACK-THEME", label: "dark" }
+    { value: 'DEFAULT-THEME', label: 'cyan' },
+    { value: 'LIGHT-THEME', label: 'light' },
+    { value: 'NATURE-THEME', label: 'nature' },
+    { value: 'BLACK-THEME', label: 'dark' }
   ];
 
   languages = [
-    { value: "en", label: "English" },
-    { value: "he", label: "עברית" }
+    { value: 'en', label: 'English' },
+    { value: 'he', label: 'עברית' }
   ];
 
   constructor(private store: Store<State>) {}

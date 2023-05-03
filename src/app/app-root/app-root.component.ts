@@ -1,9 +1,9 @@
-import browser from "browser-detect";
-import { Component, OnInit } from "@angular/core";
-import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs";
+import browser from 'browser-detect';
+import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { environment as env } from "../../environments/environment";
+import { environment as env } from '../../environments/environment';
 
 import {
   authLogin,
@@ -14,16 +14,16 @@ import {
   selectSettingsStickyHeader,
   selectSettingsLanguage,
   selectEffectiveTheme
-} from "../core/core.module";
+} from '../core/core.module';
 import {
   actionSettingsChangeAnimationsPageDisabled,
   actionSettingsChangeLanguage
-} from "../core/settings/settings.actions";
+} from '../core/settings/settings.actions';
 
 @Component({
-  selector: "st-root",
-  templateUrl: "./app-root.component.html",
-  styleUrls: ["./app-root.component.scss"],
+  selector: 'st-root',
+  templateUrl: './app-root.component.html',
+  styleUrls: ['./app-root.component.scss'],
   animations: [routeAnimations]
 })
 export class AppRootComponent implements OnInit {
@@ -31,15 +31,15 @@ export class AppRootComponent implements OnInit {
   envName = env.envName;
   version = env.versions.app;
   year = new Date().getFullYear();
-  languages = ["en", "he"];
+  languages = ['en', 'he'];
   navItems = [
-    { link: "patients", label: "stms.menu.patients" },
-    { link: "orders", label: "stms.menu.orders" },
-    { link: "follow-list", label: "stms.menu.follow-list" }
+    { link: 'patients', label: 'stms.menu.patients' },
+    { link: 'orders', label: 'stms.menu.orders' },
+    { link: 'follow-list', label: 'stms.menu.follow-list' }
   ];
   navigationSideMenu = [
     ...this.navItems,
-    { link: "settings", label: "stms.menu.settings" }
+    { link: 'settings', label: 'stms.menu.settings' }
   ];
 
   isAuthenticated$: Observable<boolean>;
@@ -53,7 +53,7 @@ export class AppRootComponent implements OnInit {
   ) {}
 
   private static isIEorEdgeOrSafari() {
-    return ["ie", "edge", "safari"].includes(browser().name);
+    return ['ie', 'edge', 'safari'].includes(browser().name);
   }
 
   ngOnInit(): void {
