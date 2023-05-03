@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Order } from '../../models/order.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'st-orders-table',
@@ -7,8 +8,10 @@ import { Order } from '../../models/order.model';
   styleUrls: ['./orders-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OrdersTableComponent implements OnInit {
+export class OrdersTableComponent {
   @Input() data: Order[];
+
+  @Input() isLoading$: Observable<boolean>;
 
   @Input() actionType: 'add' | 'remove' = 'add';
 
@@ -23,10 +26,4 @@ export class OrdersTableComponent implements OnInit {
     'patient',
     'creationDate',
   ];
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

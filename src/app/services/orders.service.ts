@@ -27,4 +27,11 @@ export class OrdersService extends AbstractFollowedService<Order> {
       order.isFollowup = false;
     }
   }
+
+  applyFollowed(order: Order): Order {
+    if (this.followedList.has(order.orderNum)) {
+      order.isFollowup = true;
+    }
+    return order;
+  }
 }

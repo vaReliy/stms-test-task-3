@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { switchMap, map, tap, catchError } from 'rxjs/operators';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 import { OrdersService } from '../../../services/orders.service';
@@ -19,11 +19,23 @@ export class OrdersComponent implements OnInit {
 
   refresh$ = new Subject();
 
+  isLoading$ = new BehaviorSubject<boolean>(false);
+
   constructor(private readonly ordersService: OrdersService) {}
 
   ngOnInit() {
     this.orderList$ = this.refresh$.pipe(
-      switchMap(() => this.ordersService.getOrderList())
+      tap(() => this.isLoading$.next(true)),
+      switchMap(() => this.ordersService.getOrderList()),
+      catchError(() => {
+        // todo: do error handle
+        this.isLoading$.next(false);
+        return [];
+      }),
+      map((list: Order[]) =>
+        list.map(order => this.ordersService.applyFollowed(order))
+      ),
+      tap(() => this.isLoading$.next(false))
     );
   }
 

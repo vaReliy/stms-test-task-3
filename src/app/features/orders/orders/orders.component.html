@@ -2,15 +2,17 @@
   <div rtl>
     <h1 class="main-heading">{{ 'stms.orders.title' | translate }}</h1>
     <div class="actions">
-      <a
+      <button
         (click)="onRefresh()"
+        [disabled]="isLoading$ | async"
         mat-raised-button class="actions-main" color="primary">
         {{ 'stms.orders.get-orders' | translate }}
-      </a>
+      </button>
 
       <st-orders-table
-        *ngIf="orderList$ | async as list"
-        [data]="list"
+        *ngIf="orderList$ | async as data"
+        [data]="data"
+        [isLoading$]="isLoading$"
         [actionType]="'add'"
         (action)="onFollowOrder($event)">
       </st-orders-table>

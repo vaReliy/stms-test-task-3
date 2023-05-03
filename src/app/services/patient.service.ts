@@ -27,4 +27,11 @@ export class PatientService extends AbstractFollowedService<Patient> {
       patient.followUpPatient = false;
     }
   }
+
+  applyFollowed(patient: Patient): Patient {
+    if (this.followedList.has(patient.code)) {
+      patient.followUpPatient = true;
+    }
+    return patient;
+  }
 }
