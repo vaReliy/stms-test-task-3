@@ -2,10 +2,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
-import { OrdersService } from '../../../services/orders.service';
-import { PatientService } from '../../../services/patient.service';
 import { Order } from '../../../shared/models/order.model';
 import { Patient } from '../../../shared/models/patient.model';
+import { Store, select } from '@ngrx/store';
+import { FollowListState } from '../follow.list.reducers';
+import { selectFollowedOrders, selectFollowedPatients } from '../follow-list.selectors';
+import { RemoveFollowListOrderAction, RemoveFollowListPatientAction } from '../follow-list.actions';
 
 type FilterData = {
   filterBy: 'fullName' | 'orderName';
@@ -20,14 +22,16 @@ type FilterData = {
 })
 export class FollowListComponent implements OnInit {
   orderList$: Observable<Order[]>;
+  patientList$: Observable<Patient[]>;
 
-  patientsList$: Observable<Patient[]>; // todo
+  followedOrders$: Observable<Order[]> = this.store$.pipe(select(selectFollowedOrders));
+
+  followedPatients$: Observable<Patient[]> = this.store$.pipe(select(selectFollowedPatients));
 
   filter$ = new Subject<FilterData>();
 
   constructor(
-    private readonly ordersService: OrdersService,
-    private readonly patientService: PatientService,
+    private readonly store$: Store<FollowListState>,
   ) {
   }
 
@@ -40,16 +44,16 @@ export class FollowListComponent implements OnInit {
 
     this.orderList$ = combineLatest([
       this.filter$.pipe(startWith({filterBy: 'orderName', query: ''})),
-      this.ordersService.getFollowedList()
+      this.followedOrders$
     ]).pipe(
       map(([filter, list]) => ({filter, list})),
       filter(({filter, list}) => filter.filterBy === 'orderName' || !filter.query),
       map(filterList)
     );
 
-    this.patientsList$ = combineLatest([
+    this.patientList$ = combineLatest([
       this.filter$.pipe(startWith({filterBy: 'fullName', query: ''})),
-      this.patientService.getFollowedList()
+      this.followedPatients$
     ]).pipe(
       map(([filter, list]) => ({filter, list})),
       filter(({filter, list}) => filter.filterBy === 'fullName' || !filter.query),
@@ -58,11 +62,15 @@ export class FollowListComponent implements OnInit {
   }
 
   onUnfollowOrder(order: Order): void {
-    this.ordersService.removeFollowedItem(order);
+    this.store$.dispatch(new RemoveFollowListOrderAction({
+      orderNum: order.orderNum
+    }));
   }
 
   onUnfollowPatient(patient: Patient): void {
-    this.patientService.removeFollowedItem(patient);
+    this.store$.dispatch(new RemoveFollowListPatientAction({
+      code: patient.code
+    }));
   }
 
   onFilterChange(filter: FilterData): void {

@@ -1,10 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 import { PatientService } from '../../../services/patient.service';
 import { Patient } from '../../../shared/models/patient.model';
+import { selectFollowedPatients } from 'app/features/follow-list/follow-list.selectors';
+import { Store, select } from '@ngrx/store';
+import { FollowListState } from 'app/features/follow-list/follow.list.reducers';
+import { AddFollowListPatientAction } from 'app/features/follow-list/follow-list.actions';
 
 @Component({
   selector: 'st-patients',
@@ -17,24 +21,33 @@ export class PatientsComponent implements OnInit {
 
   patientList$: Observable<Patient[]>;
 
+  followedPatients$: Observable<Patient[]> = this.store$.pipe(select(selectFollowedPatients));
+
   refresh$ = new Subject();
 
   isLoading$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private readonly patientService: PatientService) {}
+  constructor(
+    private readonly store$: Store<FollowListState>,
+    private readonly patientService: PatientService
+    ) {}
 
   ngOnInit() {
     this.patientList$ = this.refresh$.pipe(
       tap(() => this.isLoading$.next(true)),
-      switchMap(() => this.patientService.getPatientList()),
+      switchMap(() => combineLatest([
+        this.patientService.getPatientList(),
+        this.followedPatients$
+      ])),
+      map(([patientList, followedPatients]) => patientList.map(patient => ({
+          ...patient,
+          followUpPatient: followedPatients.find(fp => fp.code === patient.code)?.followUpPatient
+        }))),
       catchError(() => {
         // todo: do error handle
         this.isLoading$.next(false);
         return [];
       }),
-      map((list: Patient[]) =>
-        list.map(patient => this.patientService.applyFollowed(patient))
-      ),
       tap(() => this.isLoading$.next(false))
     );
   }
@@ -44,6 +57,11 @@ export class PatientsComponent implements OnInit {
   }
 
   onFollowPatient(patient: Patient): void {
-    this.patientService.addFollowedItem(patient);
+    this.store$.dispatch(new AddFollowListPatientAction({
+      patient: {
+        ...patient,
+        followUpPatient: true
+      }
+    }));
   }
 }

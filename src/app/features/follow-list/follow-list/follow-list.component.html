@@ -14,7 +14,7 @@
                 </st-orders-table>
             </div>
 
-            <div *ngIf="patientsList$ | async as patientList" class="mt-2rem">
+            <div *ngIf="patientList$ | async as patientList" class="mt-2rem">
                 <h2>{{'stms.follow-list.patients' | translate}}</h2>
                 <st-patient-table
                     *ngIf="patientList.length; else empty"
