@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { TranslateModule } from "@ngx-translate/core";
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { SharedModule } from "../../../shared/shared.module";
+import { SharedModule } from '../../../shared/shared.module';
 
-import { PatientsComponent } from "./patients.component";
+import { PatientsComponent } from './patients.component';
 
-describe("PatientsComponent", () => {
+describe('PatientsComponent', () => {
   let component: PatientsComponent;
   let fixture: ComponentFixture<PatientsComponent>;
 
@@ -29,7 +29,7 @@ describe("PatientsComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

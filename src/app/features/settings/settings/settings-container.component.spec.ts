@@ -29,6 +29,7 @@ describe('SettingsComponent', () => {
   let fixture: ComponentFixture<SettingsContainerComponent>;
   let store: MockStore;
   let dispatchSpy;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   let mockSelectSettings: MemoizedSelector<{}, SettingsState>;
 
   const getThemeSelectArrow = () =>

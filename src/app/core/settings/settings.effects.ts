@@ -1,21 +1,21 @@
-import { ActivationEnd, Router } from "@angular/router";
-import { Injectable, NgZone } from "@angular/core";
-import { OverlayContainer } from "@angular/cdk/overlay";
-import { select, Store } from "@ngrx/store";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { TranslateService } from "@ngx-translate/core";
-import { combineLatest, merge, of } from "rxjs";
+import { ActivationEnd, Router } from '@angular/router';
+import { Injectable, NgZone } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { select, Store } from '@ngrx/store';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { TranslateService } from '@ngx-translate/core';
+import { combineLatest, merge, of } from 'rxjs';
 import {
   tap,
   withLatestFrom,
   distinctUntilChanged,
   filter
-} from "rxjs/operators";
+} from 'rxjs/operators';
 
-import { selectSettingsState } from "../core.state";
-import { LocalStorageService } from "../local-storage/local-storage.service";
-import { AnimationsService } from "../animations/animations.service";
-import { TitleService } from "../title/title.service";
+import { selectSettingsState } from '../core.state';
+import { LocalStorageService } from '../local-storage/local-storage.service';
+import { AnimationsService } from '../animations/animations.service';
+import { TitleService } from '../title/title.service';
 
 import {
   actionSettingsChangeAnimationsElements,
@@ -26,18 +26,18 @@ import {
   actionSettingsChangeTheme,
   actionSettingsChangeStickyHeader,
   actionSettingsChangeHour
-} from "./settings.actions";
+} from './settings.actions';
 import {
   selectEffectiveTheme,
   selectSettingsLanguage,
   selectPageAnimations,
   selectElementsAnimations
-} from "./settings.selectors";
-import { State } from "./settings.model";
+} from './settings.selectors';
+import { State } from './settings.model';
 
-export const SETTINGS_KEY = "SETTINGS";
+export const SETTINGS_KEY = 'SETTINGS';
 
-const INIT = of("stms-init-effect-trigger");
+const INIT = of('stms-init-effect-trigger');
 
 @Injectable()
 export class SettingsEffects {
@@ -110,7 +110,7 @@ export class SettingsEffects {
           const classList = this.overlayContainer.getContainerElement()
             .classList;
           const toRemove = Array.from(classList).filter((item: string) =>
-            item.includes("-theme")
+            item.includes('-theme')
           );
           if (toRemove.length) {
             classList.remove(...toRemove);

@@ -41,7 +41,7 @@ describe('BigInputComponent', () => {
   });
 
   it('should have expected placeholder', () => {
-    expect(bigInputDebugElement.attributes['placeholder']).toContain(
+    expect(bigInputDebugElement.attributes.placeholder).toContain(
       'going to do'
     );
   });

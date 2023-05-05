@@ -1,8 +1,8 @@
-import { AppState } from "../core.module";
+import { AppState } from '../core.module';
 
-export const NIGHT_MODE_THEME = "BLACK-THEME";
+export const NIGHT_MODE_THEME = 'BLACK-THEME';
 
-export type Language = "en" | "he";
+export type Language = 'en' | 'he';
 
 export interface SettingsState {
   language: string;
