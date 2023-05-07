@@ -1,7 +1,7 @@
 # stms-test-task-3
 - A button on each route: orders, patients should fetch data from a mock API
-# Orders: https://api.mocki.io/v2/79fb05cb
-# Patients: https://api.mocki.io/v2/51597ef3
+  - Orders:  https://api.mocki.io/v2/79fb05cb
+  - Patients: https://api.mocki.io/v2/51597ef3
 
 - The result should be displayed in a list
 - A button to "add to follow list" should appear on each item row
@@ -13,3 +13,12 @@
 - Bonus: Please make it look nice
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/stms-test-task-3)
+
+
+###### 2023 updates: 
+- bugfix:  
+  - There is no correct "Add to follow" button state after repeated requests (`getOrders`/`getPatients`)
+- added spinner to `getOrders`/`getPatients` requests.
+- updated dependencies
+- migrated from `tslint` to `eslint`
+- updated README
