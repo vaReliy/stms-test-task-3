@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { Order } from 'app/shared/models/order.model';
-import { Patient } from 'app/shared/models/patient.model';
+import { Order } from '../../shared/models/order.model';
+import { Patient } from '../../shared/models/patient.model';
 
 export enum FollowListActionType {
     addFollowedOrder = '[FollowList] add followed order',

@@ -6,9 +6,9 @@ import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 import { OrdersService } from '../../../services/orders.service';
 import { Order } from '../../../shared/models/order.model';
 import { Store, select } from '@ngrx/store';
-import { FollowListState } from 'app/features/follow-list/follow.list.reducers';
-import { AddFollowListOrderAction } from 'app/features/follow-list/follow-list.actions';
-import { selectFollowedOrders } from 'app/features/follow-list/follow-list.selectors';
+import { FollowListState } from '../../../features/follow-list/follow.list.reducers';
+import { AddFollowListOrderAction } from '../../../features/follow-list/follow-list.actions';
+import { selectFollowedOrders } from '../../../features/follow-list/follow-list.selectors';
 
 @Component({
   selector: 'st-orders',

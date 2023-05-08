@@ -5,10 +5,10 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 import { PatientService } from '../../../services/patient.service';
 import { Patient } from '../../../shared/models/patient.model';
-import { selectFollowedPatients } from 'app/features/follow-list/follow-list.selectors';
 import { Store, select } from '@ngrx/store';
-import { FollowListState } from 'app/features/follow-list/follow.list.reducers';
-import { AddFollowListPatientAction } from 'app/features/follow-list/follow-list.actions';
+import { FollowListState } from '../../../features/follow-list/follow.list.reducers';
+import { selectFollowedPatients } from '../../../features/follow-list/follow-list.selectors';
+import { AddFollowListPatientAction } from '../../../features/follow-list/follow-list.actions';
 
 @Component({
   selector: 'st-patients',
