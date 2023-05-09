@@ -25,7 +25,9 @@
         "@angular-eslint/component-selector": [
           "error",
           {
-            "prefix": ["st"]
+            "prefix": [
+              "st"
+            ]
           }
         ],
         "prefer-arrow/prefer-arrow-functions": "off"
