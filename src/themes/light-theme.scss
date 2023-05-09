@@ -1,8 +1,9 @@
-$st-light-primary: mat-palette($mat-grey, 200, 500, 300);
-$st-light-accent: mat-palette($mat-brown, 200);
-$st-light-warn: mat-palette($mat-deep-orange, 200);
+@use '~@angular/material' as mat;
+$st-light-primary: mat.define-palette(mat.$grey-palette, 200, 500, 300);
+$st-light-accent: mat.define-palette(mat.$brown-palette, 200);
+$st-light-warn: mat.define-palette(mat.$deep-orange-palette, 200);
 
-$st-light-theme: mat-light-theme(
+$st-light-theme: mat.define-light-theme(
   $st-light-primary,
   $st-light-accent,
   $st-light-warn

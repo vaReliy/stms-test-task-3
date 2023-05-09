@@ -1,5 +1,6 @@
-$st-primary: mat-palette($mat-cyan, 900, 600, 900);
-$st-accent: mat-palette($mat-cyan, 800, 100, 800);
-$st-warn: mat-palette($mat-pink, 600);
+@use '~@angular/material' as mat;
+$st-primary: mat.define-palette(mat.$cyan-palette, 900, 600, 900);
+$st-accent: mat.define-palette(mat.$cyan-palette, 800, 100, 800);
+$st-warn: mat.define-palette(mat.$pink-palette, 600);
 
-$st-theme: mat-light-theme($st-primary, $st-accent, $st-warn);
+$st-theme: mat.define-light-theme($st-primary, $st-accent, $st-warn);
