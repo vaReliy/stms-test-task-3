@@ -22,3 +22,4 @@
 - updated dependencies
 - migrated from `tslint` to `eslint`
 - updated README
+- updated to NGRX implementation
