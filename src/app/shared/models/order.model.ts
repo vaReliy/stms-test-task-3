@@ -12,7 +12,7 @@ export interface Order {
   collectionStatus?: any;
   comments?: any[];
   copyToFacility?: any;
-  creationDate?: { formattedTime: string, formattedDate: string };
+  creationDate?: { formattedTime: string; formattedDate: string };
   creator?: any;
   defaultFax?: any;
   department?: any;

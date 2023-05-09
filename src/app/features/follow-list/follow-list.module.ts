@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
-import { TranslateModule } from '@ngx-translate/core'
-import { SharedModule } from '../../shared/shared.module'
-import { FollowListRoutingModule } from './follow-list-routing.module'
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../../shared/shared.module';
+import { FollowListRoutingModule } from './follow-list-routing.module';
 import { FollowListComponent } from './follow-list/follow-list.component';
-import { FilterComponent } from './filter/filter.component'
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({

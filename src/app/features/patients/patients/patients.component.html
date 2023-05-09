@@ -2,15 +2,16 @@
   <div rtl>
     <h1 class="main-heading">{{ 'stms.patients.title' | translate }}</h1>
     <div class="actions">
-      <a
+      <button
         (click)="onRefresh()"
         mat-raised-button class="actions-main" color="primary">
         {{ 'stms.patients.get-patients' | translate }}
-      </a>
+      </button>
 
       <st-patient-table
         *ngIf="patientList$ | async as list"
         [data]="list"
+        [isLoading$]="isLoading$"
         [actionType]="'add'"
         (action)="onFollowPatient($event)">
       </st-patient-table>
