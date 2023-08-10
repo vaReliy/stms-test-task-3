@@ -12,10 +12,12 @@
 - Bonus: The list should be filterable by a form input that filters by firstName (patient) / orderName (order)
 - Bonus: Please make it look nice
 
+[Demo on GH Pages 🐾](https://vareliy.github.io/stms-test-task-3/)
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/stms-test-task-3)
 
 
 ###### 2023 updates: 
+- added gh-pages
 - bugfix:  
   - There is no correct "Add to follow" button state after repeated requests (`getOrders`/`getPatients`)
 - added spinner to `getOrders`/`getPatients` requests.
